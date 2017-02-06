@@ -1,0 +1,9 @@
+/* footer */
+
+footer {
+  margin-top: 25px;
+  padding-top: 5px;
+  border-top: 1px solid lightgray;
+  color: gray;
+  text-align: center;
+}

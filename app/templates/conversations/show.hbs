@@ -1,0 +1,30 @@
+<div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Title: {{model.title}}
+        {{#if isCurrentUserOrAdmin}}
+        <span class="glyphicon glyphicon-remove"  style="cursor: pointer" {{ action "deleteConv" model}}></span>
+        {{/if}}
+      </h3>
+      <small>{{model.createdAt}}</small>
+    </div>
+    <div class="panel-body">
+      {{model.content}}
+    </div>
+  </div>
+  <form {{action 'addComment' on='submit'}}>
+    <div class="form-group">
+      {{textarea class="form-control" value=comment.content placeholder="input comment you like..."}}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+  </form>
+  <hr>
+  <h3>Comments</h3>
+  <ul class="list-group">
+    {{#each model.comments as |c|}} 
+      {{# unless c.isNew}}
+        <li class="list-group-item">{{c.content}}</li>
+      {{/unless}}
+    {{/each}}
+  </ul>
+</div>

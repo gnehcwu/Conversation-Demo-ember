@@ -1,0 +1,28 @@
+<h3><span class="glyphicon glyphicon-user"></span>Log in</h3>
+<hr>
+<div class="row">
+  <div class="col-md-5">
+
+    {{#if loginError}}
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        Invalid email/password combination
+      </div>
+    </div>
+    {{/if}}
+
+    <form {{action 'authenticate' on='submit'}}>
+      <div class="form-group">
+      <label for="user_email">Email</label>
+      {{input class="form-control" type="email" id="user_email" value=identification size="50"}}
+      </div>
+      <div class="form-group">
+      <label for="user_password">Password</label>
+      {{input class="form-control" type="password" id="user_password" value=password size="50"}}
+      </div>
+      <input type="submit" value="Log In" class="btn btn-primary">
+    </form>
+    <hr>
+    <p>New user? | {{link-to ' Sign up now!' 'users.new'}}</p>
+  </div>
+</div>

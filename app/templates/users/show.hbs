@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">My Profile</h3>
+      </div>
+      <div class="panel-body">
+        Name: {{model.name}}
+        <hr> Email: {{model.email}}
+      </div>
+    </div>
+    <hr>
+    <form {{action 'createConversation' on='submit' }}>
+      <div class="form-group">
+        {{input type="text" class="form-control" value=conversation.title placeholder="input title"}}
+      </div>
+      <div class="form-group">
+        {{textarea class="form-control" value=conversation.content placeholder="Compose new conversations..."}}
+      </div>
+      <input type="submit" value="Create" class="btn btn-primary">
+    </form>
+  </div>
+
+  <div class="my-cons col-md-6 col-md-offset-1">
+    <h3>My Conversations</h3>
+    <hr> {{#each model.conversations as |c|}}
+    {{# unless c.isNew}}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{link-to c.title 'conversations.show' c}}
+          <span class="glyphicon glyphicon-remove"  style="cursor: pointer" {{ action "deleteMyConv" c}}></span>
+          </h3>
+      </div>
+      <div class="panel-body">
+        {{c.content}}
+      </div>
+      <div class="panel-footer">
+        {{link-to 'view more...' 'conversations.show' c}}
+      </div>
+    </div>
+    {{/unless}}
+    {{/each}}
+  </div>
+</div>
